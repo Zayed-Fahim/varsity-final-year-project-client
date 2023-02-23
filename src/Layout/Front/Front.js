@@ -23,29 +23,29 @@ const Front = () => {
               Continue to the system As....
             </h1>
           </div>
-          <div className="flex flex-row lg:flex-row lg:flex-nowrap flex-wrap justify-center items-center gap-16 lg:gap-28 ">
-            <div className="hover:shadow-lg hover:shadow-black hover:rounded-xl">
+          <div className="flex flex-row lg:flex-row lg:flex-nowrap flex-wrap justify-center items-center gap-10 lg:gap-28 ">
+            <div className="hover:shadow-md shadow-sm shadow-[#FFBE15] rounded-lg hover:shadow-gray-500 lg:duration-300 hover:ease-in hover:scale-110 hover:rounded-xl">
               <Link
                 to="student-login"
-                className="bg-[#FFBE15] h-[150px] w-[150px] grid place-items-center rounded-lg"
+                className="bg-[#FFBE15] lg:h-[150px] h-[140px] lg:w-[150px] w-[140px] grid place-items-center rounded-lg"
               >
                 <img className="h-[70px]" src={student} alt="student" />
                 <h1 className="text-2xl font-bold">Student</h1>
               </Link>
             </div>
-            <div className="hover:shadow-lg hover:shadow-black hover:rounded-xl">
+            <div className="hover:shadow-md shadow-sm shadow-[#FFBE15] rounded-lg hover:shadow-gray-500 lg:duration-300 hover:ease-in hover:scale-110 hover:rounded-xl">
               <Link
                 to="/teacher-login"
-                className="bg-[#FFBE15] h-[150px] w-[150px] grid place-items-center rounded-lg"
+                className="bg-[#FFBE15] lg:h-[150px] h-[140px] lg:w-[150px] w-[140px] grid place-items-center rounded-lg"
               >
                 <GiTeacher fill="text-black" size={70} />
                 <h1 className="text-2xl font-bold">Teacher</h1>
               </Link>
             </div>
-            <div className="hover:shadow-lg hover:shadow-black hover:rounded-xl">
+            <div className="hover:shadow-md shadow-sm shadow-[#FFBE15] rounded-lg hover:shadow-gray-500 lg:duration-300 hover:ease-in hover:scale-110 hover:rounded-xl">
               <Link
                 to="/home"
-                className="bg-[#FFBE15] h-[150px] w-[150px] grid place-items-center rounded-lg"
+                className="bg-[#FFBE15] lg:h-[150px] h-[140px] lg:w-[150px] w-[140px] grid place-items-center rounded-lg"
               >
                 <img className="h-[70px]" src={guest} alt="guest" />
                 <h1 className="text-2xl font-bold">Guest</h1>

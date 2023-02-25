@@ -15,11 +15,11 @@ const Front = () => {
           </Link>
         </div>
         <div className="flex flex-col items-center gap-16 my-[68px] lg:my-28">
-          <div className="lg:text-6xl text-4xl font-bold leading-normal lg:leading-relaxed">
-            <h1 className="text-[#FFBE15] text-center lg:text-left lg:w-[660px]">
+          <div className="lg:text-6xl md:text-5xl text-4xl font-bold leading-normal lg:leading-relaxed">
+            <h1 className="text-[#FFBE15] text-center lg:text-left ">
               Welcome Here.
             </h1>
-            <h1 className="text-center lg:text-left lg:w-[660px]">
+            <h1 className="text-center lg:text-left  md:w-[600px] lg:w-[660px]">
               Continue to the system As....
             </h1>
           </div>

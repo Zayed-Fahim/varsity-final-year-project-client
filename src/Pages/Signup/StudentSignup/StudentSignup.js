@@ -5,13 +5,52 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const StudentSignup = () => {
   const formSchema = Yup.object().shape({
+    fullName: Yup.string()
+      .required("Full Name is required")
+      .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
+      .max(20, "Full Name cannot exceed 20 characters"),
+    userName: Yup.string()
+      .required("User Name is required")
+      .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
+      .max(20, "User Name cannot exceed 20 characters"),
+    fatherName: Yup.string()
+      .required("Father Name is required")
+      .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
+      .max(25, "Father Name cannot exceed 25 characters"),
+    motherName: Yup.string()
+      .required("Mother Name is required")
+      .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
+      .max(25, "Mother Name cannot exceed 25 characters"),
+    email: Yup.string()
+      .required("Email is required")
+      .matches(
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+        "The Email you entered is invalid"
+      ),
+    phone: Yup.string()
+      .required("Phone Number is required")
+      .matches(
+        /^(?:(?:\+|00)88|01)?\d{11}$/,
+        "Phone Number you entered is invalid"
+      ),
     password: Yup.string()
       .required("Password is required")
-      .min(4, "Password length should be at least 4 characters")
-      .max(12, "Password cannot exceed more than 12 characters"),
+      .min(6, "Password length should be at least 6 characters")
+      .max(16, "Password cannot exceed more than 16 characters")
+      .matches(
+        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+        "Contain at least one number and one special character"
+      ),
     confirmPassword: Yup.string()
       .required("Confirm Password is required")
-      .oneOf([Yup.ref("password")], "Passwords do not match"),
+      .oneOf([Yup.ref("password")], "Passwords did not match"),
+    roll: Yup.string().required("Roll is required"),
+    picture: Yup.string()
+      .required("Image is required")
+      .matches(/\.(jpe?g|png|gif|bmp)$/i, "Image is an invalid format"),
+    address: Yup.string()
+      .required("Address is required")
+      .matches(/^[a-zA-Z0-9\s,'-]*$/, "Address you entered is invalid address"),
   });
   const {
     register,
@@ -28,6 +67,11 @@ const StudentSignup = () => {
 
   return (
     <div className="container mx-auto border-2 border-[#FFBE15] border-opacity-10 max-h-max m-3 md:mx-auto md:my-7 lg:px-0 lg:py-5 xl:px-10 xl:py-10 xl:my-[70px] lg:my-12">
+      <div className="mb-2 md:mb-5 lg:mb-5 xl:mb-8">
+        <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center">
+          Welcome to Amader <span className="text-[#FFBE15]">School</span>!!
+        </h1>
+      </div>
       <div className="mb-2 md:mb-5 lg:mb-5 xl:mb-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center">
           Create your <span className="text-[#FFBE15]">Student</span> Account
@@ -47,24 +91,9 @@ const StudentSignup = () => {
             <input
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Full Name"
-              {...register("fullName", {
-                required: true,
-                maxLength: 20,
-                pattern: /^[A-Za-z_ ]+$/i,
-              })}
-              aria-invalid={errors.fullName ? "true" : "false"}
+              {...register("fullName")}
             />
-            {errors?.fullName?.type === "required" && (
-              <p className="text-red-500">Full Name is required</p>
-            )}
-            {errors?.fullName?.type === "maxLength" && (
-              <p className="text-red-500">
-                Full Name cannot exceed 20 characters
-              </p>
-            )}
-            {errors?.fullName?.type === "pattern" && (
-              <p className="text-red-500">Alphabetical characters only</p>
-            )}
+            <p className="text-red-500">{errors.fullName?.message}</p>
           </div>
           <div>
             <label className="label">
@@ -73,24 +102,9 @@ const StudentSignup = () => {
             <input
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="User Name"
-              {...register("userName", {
-                required: true,
-                maxLength: 20,
-                pattern: /^[A-Za-z_ ]+$/i,
-              })}
-              aria-invalid={errors.userName ? "true" : "false"}
+              {...register("userName")}
             />
-            {errors?.userName?.type === "required" && (
-              <p className="text-red-500">User Name is required</p>
-            )}
-            {errors?.userName?.type === "maxLength" && (
-              <p className="text-red-500">
-                User Name cannot exceed 20 characters
-              </p>
-            )}
-            {errors?.userName?.type === "pattern" && (
-              <p className="text-red-500">Alphabetical characters only</p>
-            )}
+            <p className="text-red-500">{errors.userName?.message}</p>
           </div>
           <div>
             <label className="label">
@@ -129,24 +143,9 @@ const StudentSignup = () => {
             <input
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Father's name"
-              {...register("fatherName", {
-                required: true,
-                maxLength: 25,
-                pattern: /^[A-Za-z_ ]+$/i,
-              })}
-              aria-invalid={errors.fatherName ? "true" : "false"}
+              {...register("fatherName")}
             />
-            {errors?.fatherName?.type === "required" && (
-              <p className="text-red-500">Father's Name is required</p>
-            )}
-            {errors?.fatherName?.type === "maxLength" && (
-              <p className="text-red-500">
-                Father's Name cannot exceed 20 characters
-              </p>
-            )}
-            {errors?.fatherName?.type === "pattern" && (
-              <p className="text-red-500">Alphabetical characters only</p>
-            )}
+            <p className="text-red-500">{errors.fatherName?.message}</p>
           </div>
           <div>
             <label className="label">
@@ -155,24 +154,9 @@ const StudentSignup = () => {
             <input
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Mother's name"
-              {...register("motherName", {
-                required: true,
-                maxLength: 25,
-                pattern: /^[A-Za-z_ ]+$/i,
-              })}
-              aria-invalid={errors.motherName ? "true" : "false"}
+              {...register("motherName")}
             />
-            {errors?.motherName?.type === "required" && (
-              <p className="text-red-500">Mother's Name is required</p>
-            )}
-            {errors?.motherName?.type === "maxLength" && (
-              <p className="text-red-500">
-                Mother's Name cannot exceed 20 characters
-              </p>
-            )}
-            {errors?.motherName?.type === "pattern" && (
-              <p className="text-red-500">Alphabetical characters only</p>
-            )}
+            <p className="text-red-500">{errors.motherName?.message}</p>
           </div>
           <div>
             <label className="label">
@@ -220,19 +204,9 @@ const StudentSignup = () => {
             <input
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Your Email"
-              {...register("email", {
-                required: true,
-                pattern:
-                  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-              })}
-              aria-invalid={errors.email ? "true" : "false"}
+              {...register("email")}
             />
-            {errors?.email?.type === "required" && (
-              <p className="text-red-500">Email is required</p>
-            )}
-            {errors?.email?.type === "pattern" && (
-              <p className="text-red-500">The Email you entered is invalid</p>
-            )}
+            <p className="text-red-500">{errors.email?.message}</p>
           </div>
           <div>
             <label className="label">
@@ -242,20 +216,9 @@ const StudentSignup = () => {
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="tel"
               placeholder="Your Phone"
-              {...register("phone", {
-                required: true,
-                pattern: /^(?:(?:\+|00)88|01)?\d{11}$/,
-              })}
-              aria-invalid={errors.phone ? "true" : "false"}
+              {...register("phone")}
             />
-            {errors?.phone?.type === "required" && (
-              <p className="text-red-500">Phone Number is required</p>
-            )}
-            {errors?.phone?.type === "pattern" && (
-              <p className="text-red-500">
-                Phone Number you entered is invalid
-              </p>
-            )}
+            <p className="text-red-500">{errors.phone?.message}</p>
           </div>
           <div>
             <label className="label">
@@ -265,38 +228,9 @@ const StudentSignup = () => {
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="password"
               placeholder="Your Password"
-              {...register("password", {
-                required: true,
-                minLength: 6,
-                maxLength: 16,
-                pattern:
-                  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-              })}
-              aria-invalid={errors.password ? "true" : "false"}
+              {...register("password")}
             />
-            {errors?.password?.type === "required" && (
-              <p className="text-red-500">Password is required</p>
-            )}
-            {errors?.password?.type === "minLength" && (
-              <p className="text-red-500">
-                Password must be 6 characters or long
-              </p>
-            )}
-            {errors?.password?.type === "maxLength" && (
-              <p className="text-red-500">
-                Password must be 16 characters or less
-              </p>
-            )}
-            {errors?.password?.type === "pattern" && (
-              <>
-                <p className="text-red-500">
-                  Password must have at least one number
-                </p>
-                <p className="text-red-500">
-                  Password must have at one special character
-                </p>
-              </>
-            )}
+            <p className="text-red-500">{errors.password?.message}</p>
           </div>
           <div>
             <label className="label">
@@ -306,14 +240,9 @@ const StudentSignup = () => {
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="password"
               placeholder="Confirm Password"
-              {...register("confirmPassword", {
-                required: true,
-              })}
+              {...register("confirmPassword")}
               aria-invalid={errors.confirmPassword ? "true" : "false"}
             />
-            {errors?.password?.type === "required" && (
-              <p className="text-red-500">Confirm Password is required</p>
-            )}
             <p className="text-red-500">{errors.confirmPassword?.message}</p>
           </div>
 
@@ -376,15 +305,11 @@ const StudentSignup = () => {
             <input
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="number"
+              min={0}
               placeholder="Your Roll"
-              {...register("roll", { required: "Roll is required" })}
-              aria-invalid={errors.roll ? "true" : "false"}
+              {...register("roll")}
             />
-            {errors.roll && (
-              <p role="alert" className="text-red-500">
-                {errors.roll?.message}
-              </p>
-            )}
+            <p className="text-red-500">{errors.roll?.message}</p>
           </div>
           <div className="form-control">
             <label className="label">
@@ -393,14 +318,9 @@ const StudentSignup = () => {
             <input
               type="file"
               className="file-input file-input-bordered file-input-warning h-12 md:w-[234px] lg:w-[235px] xl:w-72"
-              {...register("picture", { required: "Picture is required" })}
-              aria-invalid={errors.picture ? "true" : "false"}
+              {...register("picture")}
             />
-            {errors.picture && (
-              <p role="alert" className="text-red-500">
-                {errors.picture?.message}
-              </p>
-            )}
+            <p className="text-red-500">{errors.picture?.message}</p>
           </div>
 
           {/* 5th row */}

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { toast } from "react-hot-toast";
 
 const TeacherSignup = () => {
+  // validation schema start
   const formSchema = Yup.object().shape({
     fullName: Yup.string()
       .required("Full Name is required")
@@ -45,13 +49,12 @@ const TeacherSignup = () => {
       .required("Confirm Password is required")
       .oneOf([Yup.ref("password")], "Passwords did not match"),
     id: Yup.string().required("ID Number is required"),
-    picture: Yup.string()
-      .required("Image is required")
-      .matches(/\.(jpe?g|png|gif|bmp)$/i, "Image is an invalid format"),
+    picture: Yup.string().required("Image is required"),
     address: Yup.string()
       .required("Address is required")
       .matches(/^[a-zA-Z0-9\s,'-]*$/, "Address you entered is invalid address"),
   });
+  // validation schema end
   const {
     register,
     formState: { errors },
@@ -60,14 +63,64 @@ const TeacherSignup = () => {
     mode: "onTouched",
     resolver: yupResolver(formSchema),
   });
+  // collect role input value
+  const [role, setRole] = useState(null);
+  const handleRole = (e) => {
+    setRole(e.target.name.value);
+    console.log(role);
+  };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  //   // every teacher info
+  //   const teacherDetails = {
+  //     fullName: data.fullName,
+  //     userName: data.userName,
+  //     gender: data.gender,
+  //     role: data.role,
+  //     fatherName: data.fatherName,
+  //     motherName: data.motherName,
+  //     dateOfBirth: data.dateOfBirth,
+  //     religion: data.religion,
+  //     email: data.email,
+  //     phone: data.phone,
+  //     password: data.password,
+  //     confirmPassword: data.confirmPassword,
+  //     classTeacher: data.classTeacher,
+  //     classTeacherOf: data.class,
+  //     section: data.section,
+  //     subject: data.subject,
+  //     id: data.id,
+  //     img: data.picture,
+  //   };
+  //   console.log(teacherDetails);
+  // };
+
+  // get value from auth context
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleSignUp = (data) => {
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/home/teacher");
+        const displayName = {
+          displayName: data.userName,
+        };
+        updateUser(displayName)
+          .then(() => {
+            toast.success("Account created successfully");
+          })
+          .catch((error) => console.error(error));
+      })
+      .catch((error) => setError(error.message));
   };
 
   return (
-    <div className="container mx-auto border-2 border-[#FFBE15] border-opacity-10 max-h-max m-3 md:mx-auto md:my-7 lg:px-0 lg:py-5 xl:px-10 xl:py-10 xl:my-[70px] lg:my-12">
-      <div className="mb-2 md:mb-5 lg:mb-5 xl:mb-8">
+    <div className="container mx-auto border-2 bg-[#F3F4F6] rounded-xl shadow-xl border-opacity-10 max-h-max m-3 md:mx-auto md:my-7 lg:px-0 lg:py-5 xl:px-10 xl:py-10 xl:my-[70px] lg:my-12">
+      <div className="mb-2 mt-3 lg:mt-0 xl:mt-0 md:mt-4 md:mb-5 lg:mb-5 xl:mb-8">
         <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center">
           Welcome to Amader <span className="text-[#FFBE15]">School</span>!!
         </h1>
@@ -78,8 +131,9 @@ const TeacherSignup = () => {
           here.
         </h1>
       </div>
+      {/* form start */}
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleSignUp)}
         className="flex flex-col gap-5 min-w-fit max-h-max p-5 md:px-3 lg:px-5 lg:py-5 xl:px-20 xl:py-2"
       >
         {/* 1st row */}
@@ -89,7 +143,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Full Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Full Name"
               {...register("fullName")}
             />
@@ -100,7 +154,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">User Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="User Name"
               {...register("userName")}
               aria-invalid={errors.userName ? "true" : "false"}
@@ -115,7 +169,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("gender")}
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select Gender">Select Gender</option>
               <option value="female">Female</option>
@@ -129,9 +183,12 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Role</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
-              disabled
+              onSubmit={handleRole}
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              readOnly
               placeholder="Teacher"
+              value="teacher"
+              {...register("role")}
             />
           </div>
 
@@ -142,7 +199,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Father's Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Father's name"
               {...register("fatherName")}
             />
@@ -153,7 +210,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Mother's Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Mother's name"
               {...register("motherName")}
               aria-invalid={errors.motherName ? "true" : "false"}
@@ -165,7 +222,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Date Of Birth*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Date Of Birth"
               type="date"
               {...register("dateOfBirth", {
@@ -187,7 +244,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("religion")}
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select religion">Select Religion</option>
               <option value="islam">Islam</option>
@@ -204,18 +261,19 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Email*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Your Email"
               {...register("email")}
             />
             <p className="text-red-500">{errors.email?.message}</p>
+            <p className="text-red-500">{error}</p>
           </div>
           <div>
             <label className="label">
               <span className="font-bold text-sm">Phone Number*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="tel"
               placeholder="Your Phone"
               {...register("phone")}
@@ -227,7 +285,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Password*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="password"
               placeholder="Your Password"
               {...register("password")}
@@ -239,7 +297,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Confirm Password*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="password"
               placeholder="Confirm Password"
               {...register("confirmPassword")}
@@ -256,9 +314,9 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("classTeacher")}
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
-              <option value="Select class">Select Option</option>
+              <option defaultValue={true}>Select Option</option>
               <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>
@@ -270,10 +328,10 @@ const TeacherSignup = () => {
               </span>
             </label>
             <select
-              {...register("classTeacher")}
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              {...register("class")}
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
-              <option value="Select class">Select Class</option>
+              <option defaultValue={true}>Select Class</option>
               <option value="play">Play</option>
               <option value="kg">KG</option>
               <option value="one">One</option>
@@ -298,7 +356,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("section")}
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select class">Select Section</option>
               <option value="a">A</option>
@@ -316,13 +374,13 @@ const TeacherSignup = () => {
           <div>
             <label className="label">
               <span className="font-bold text-sm">
-                Teacher of Section*
+                Teaching Subject*
                 <span className="text-red-500">(Required)</span>
               </span>
             </label>
             <select
-              {...register("section")}
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              {...register("subject")}
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select class">Select Subject</option>
               <option value="mathematics">mathematics</option>
@@ -340,7 +398,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">ID Number*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="number"
               min={0}
               placeholder="Your ID"
@@ -369,7 +427,7 @@ const TeacherSignup = () => {
             type="text"
             rows={5}
             cols={78}
-            className="border-2 outline-[#FFBE15] max-w-[345px] md:h-[46px] lg:h-[80px] xl:h-full md:max-w-[484px] lg:max-w-[480px] xl:min-w-max px-2 pt-2"
+            className="border-2 outline-[#FFBE15] max-w-[325px] md:h-[46px] lg:h-[80px] xl:h-full md:max-w-[484px] lg:max-w-[480px] xl:min-w-max px-2 pt-2"
             placeholder="Your Address"
             {...register("address", {
               required: "You must provide your Address.",

@@ -2,7 +2,10 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Front from "../../Layout/Front/Front";
 import Main from "../../Layout/Main/Main";
-import Home from "../../Pages/Home/Home/Home";
+import Home from "../../Pages/Home/Home/Home/Home";
+import StudentHome from "../../Pages/Home/Home/StudentHome/StudentHome";
+import TeacherHome from "../../Pages/Home/Home/TeacherHome/TeacherHome";
+
 import AuthorizedLogin from "../../Pages/Login/AuthorizedLogin/AuthorizedLogin";
 import StudentLogin from "../../Pages/Login/StudentLogin/StudentLogin";
 import TeacherLogin from "../../Pages/Login/TeacherLogin/TeacherLogin";
@@ -24,6 +27,14 @@ const Route = () => {
           element: <Home />,
         },
       ],
+    },
+    {
+      path: "/home/student",
+      element: <StudentHome />,
+    },
+    {
+      path: "/home/teacher",
+      element: <TeacherHome />,
     },
     {
       path: "/student-signup",

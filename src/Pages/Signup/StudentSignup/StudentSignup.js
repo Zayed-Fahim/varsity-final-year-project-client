@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AuthContext } from "../../../Contexts/AuthProvider/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const StudentSignup = () => {
+  // validation schema start
   const formSchema = Yup.object().shape({
     fullName: Yup.string()
       .required("Full Name is required")
       .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
-      .max(20, "Full Name cannot exceed 20 characters"),
+      .max(50, "Full Name cannot exceed 50 characters"),
     userName: Yup.string()
       .required("User Name is required")
       .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
-      .max(20, "User Name cannot exceed 20 characters"),
+      .max(50, "User Name cannot exceed 50 characters"),
     fatherName: Yup.string()
       .required("Father Name is required")
       .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
-      .max(25, "Father Name cannot exceed 25 characters"),
+      .max(50, "Father Name cannot exceed 50 characters"),
     motherName: Yup.string()
       .required("Mother Name is required")
       .matches(/^[A-Za-z_ ]+$/i, "Alphabetical characters only")
-      .max(25, "Mother Name cannot exceed 25 characters"),
+      .max(50, "Mother Name cannot exceed 50 characters"),
     email: Yup.string()
       .required("Email is required")
       .matches(
@@ -45,13 +49,13 @@ const StudentSignup = () => {
       .required("Confirm Password is required")
       .oneOf([Yup.ref("password")], "Passwords did not match"),
     roll: Yup.string().required("Roll is required"),
-    picture: Yup.string()
-      .required("Image is required")
-      .matches(/\.(jpe?g|png|gif|bmp)$/i, "Image is an invalid format"),
+    picture: Yup.string().required("Image is required"),
+
     address: Yup.string()
       .required("Address is required")
       .matches(/^[a-zA-Z0-9\s,'-]*$/, "Address you entered is invalid address"),
   });
+  // validation schema end
   const {
     register,
     formState: { errors },
@@ -61,13 +65,59 @@ const StudentSignup = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  // const onSubmit = (data) => {
+  //   console.log(data);
+  //   // every student info
+  //   const studentDetails = {
+  //     fullName: data.fullName,
+  //     userName: data.userName,
+  //     gender: data.gender,
+  //     role: data.role,
+  //     fatherName: data.fatherName,
+  //     motherName: data.motherName,
+  //     dateOfBirth: data.dateOfBirth,
+  //     religion: data.religion,
+  //     email: data.email,
+  //     phone: data.phone,
+  //     password: data.password,
+  //     confirmPassword: data.confirmPassword,
+  //     class: data.class,
+  //     section: data.section,
+  //     roll: data.roll,
+  //     img: data.picture,
+  //   };
+  //   console.log(studentDetails);
+  // };
+  // collect role input value
+  const [role, setRole] = useState(null);
+  const handleRole = (e) => {
+    setRole(e.target.name.value);
+    console.log(role);
+  };
+  // get value from auth context
+  const { createUser, updateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSignUp = (data) => {
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate("/home/student");
+        const displayName = {
+          displayName: data.userName,
+        };
+        updateUser(displayName)
+          .then(() => {
+            toast.success("Account created successfully");
+          })
+          .catch((error) => console.error(error));
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
-    <div className="container mx-auto border-2 border-[#FFBE15] border-opacity-10 max-h-max m-3 md:mx-auto md:my-7 lg:px-0 lg:py-5 xl:px-10 xl:py-10 xl:my-[70px] lg:my-12">
-      <div className="mb-2 md:mb-5 lg:mb-5 xl:mb-8">
+    <div className="container mx-auto border-2 bg-[#F3F4F6] rounded-xl shadow-xl border-opacity-10 max-h-max m-3 md:mx-auto md:my-7 lg:px-0 lg:py-5 xl:px-10 xl:py-10 xl:my-[70px] lg:my-12">
+      <div className="mb-2 md:mb-5 lg:mb-5 xl:mb-8 mt-3 lg:mt-0 xl:mt-0 md:mt-4">
         <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center">
           Welcome to Amader <span className="text-[#FFBE15]">School</span>!!
         </h1>
@@ -78,8 +128,9 @@ const StudentSignup = () => {
           here.
         </h1>
       </div>
+      {/* form start */}
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleSignUp)}
         className="flex flex-col gap-5 min-w-fit max-h-max p-5 md:px-3 lg:px-5 lg:py-5 xl:px-20 xl:py-2"
       >
         {/* 1st row */}
@@ -128,9 +179,12 @@ const StudentSignup = () => {
               <span className="font-bold text-sm">Role</span>
             </label>
             <input
+              onSubmit={handleRole}
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
-              disabled
+              readOnly
               placeholder="Student"
+              value="student"
+              {...register("role")}
             />
           </div>
 
@@ -333,7 +387,7 @@ const StudentSignup = () => {
               type="text"
               rows={3}
               cols={79}
-              className="border-2 outline-[#FFBE15] max-w-[345px] md:h-[46px] lg:h-[80px] xl:h-full md:max-w-[484px] lg:max-w-[480px] xl:min-w-max px-2 pt-2"
+              className="border-2 outline-[#FFBE15] w-full max-w-full md:h-28 lg:h-full xl:h-full md:min-w-[480px] lg:min-w-[480px] xl:min-w-max px-2 pt-2"
               placeholder="Your Address"
               {...register("address", {
                 required: "You must provide your Address.",

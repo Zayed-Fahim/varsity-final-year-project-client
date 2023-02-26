@@ -143,7 +143,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Full Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Full Name"
               {...register("fullName")}
             />
@@ -154,7 +154,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">User Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="User Name"
               {...register("userName")}
               aria-invalid={errors.userName ? "true" : "false"}
@@ -169,7 +169,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("gender")}
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select Gender">Select Gender</option>
               <option value="female">Female</option>
@@ -184,7 +184,7 @@ const TeacherSignup = () => {
             </label>
             <input
               onSubmit={handleRole}
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               readOnly
               placeholder="Teacher"
               value="teacher"
@@ -199,7 +199,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Father's Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Father's name"
               {...register("fatherName")}
             />
@@ -210,7 +210,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Mother's Name*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Mother's name"
               {...register("motherName")}
               aria-invalid={errors.motherName ? "true" : "false"}
@@ -222,7 +222,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Date Of Birth*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Date Of Birth"
               type="date"
               {...register("dateOfBirth", {
@@ -244,7 +244,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("religion")}
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select religion">Select Religion</option>
               <option value="islam">Islam</option>
@@ -261,7 +261,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Email*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="Your Email"
               {...register("email")}
             />
@@ -273,7 +273,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Phone Number*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="tel"
               placeholder="Your Phone"
               {...register("phone")}
@@ -285,7 +285,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Password*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="password"
               placeholder="Your Password"
               {...register("password")}
@@ -297,7 +297,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">Confirm Password*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="password"
               placeholder="Confirm Password"
               {...register("confirmPassword")}
@@ -314,7 +314,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("classTeacher")}
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option defaultValue={true}>Select Option</option>
               <option value="yes">Yes</option>
@@ -329,7 +329,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("class")}
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option defaultValue={true}>Select Class</option>
               <option value="play">Play</option>
@@ -356,7 +356,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("section")}
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select class">Select Section</option>
               <option value="a">A</option>
@@ -380,7 +380,7 @@ const TeacherSignup = () => {
             </label>
             <select
               {...register("subject")}
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
             >
               <option value="Select class">Select Subject</option>
               <option value="mathematics">mathematics</option>
@@ -398,7 +398,7 @@ const TeacherSignup = () => {
               <span className="font-bold text-sm">ID Number*</span>
             </label>
             <input
-              className="border-2 outline-[#FFBE15] h-12 w-[90%] md:w-[230px] lg:w-[235px] xl:w-72 px-2"
+              className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               type="number"
               min={0}
               placeholder="Your ID"

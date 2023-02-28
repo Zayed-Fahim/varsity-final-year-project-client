@@ -76,7 +76,7 @@ const Navbar = () => {
         </div>
         {/* pc menu start */}
         <nav className="navbar-end hidden lg:flex nav-menu">
-          <ul className="flex gap-8 px-10">
+          <ul className="flex gap-8">
             <li className="about">
               <HashLink
                 to="#about"

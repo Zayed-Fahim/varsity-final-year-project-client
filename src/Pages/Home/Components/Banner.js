@@ -32,21 +32,26 @@ const Banner = () => {
     },
   ];
   return (
-    <div className="flex justify-center xl:mt-16 z-0">
+    <div className="flex justify-center mt-16 z-0">
       <Carousel
-        autoPlay
-        width="85%"
+        autoPlay={true}
+        width="90%"
+        infiniteLoop={true}
         showArrows={true}
         showIndicators={false}
         showStatus={false}
         showThumbs={false}
+        // axis="vertical"
+        emulateTouch={true}
+        stopOnHover={true}
+        interval={4000}
         className="flex justify-center items-center"
         renderArrowPrev={(clickHandler, hasPrev) => {
           return (
             <div
               className={`hover:bg-black hover:bg-opacity-20 ${
                 hasPrev ? "absolute" : "hidden"
-              } top-0 bottom-0 left-0  flex justify-center items-center p-3 opacity-30 hover:opacity-100  cursor-pointer z-20`}
+              } top-0 bottom-0 left-0  flex justify-center items-center md:p-3 lg:p-3 xl:p-3 opacity-30 hover:opacity-100  cursor-pointer z-20`}
               onClick={clickHandler}
             >
               <IoIosArrowBack size={35} className=" text-white" />
@@ -58,7 +63,7 @@ const Banner = () => {
             <div
               className={`hover:bg-black hover:bg-opacity-20 ${
                 hasNext ? "absolute" : "hidden"
-              } top-0 bottom-0 right-0 flex justify-center items-center p-3 opacity-30 hover:opacity-100 cursor-pointer z-20`}
+              } top-0 bottom-0 right-0 flex justify-center items-center md:p-3 lg:p-3 xl:p-3 opacity-30 hover:opacity-100 cursor-pointer z-20`}
               onClick={clickHandler}
             >
               <IoIosArrowForward size={35} className=" text-white" />
@@ -70,7 +75,7 @@ const Banner = () => {
           return (
             <div key={image.no}>
               <img
-                className="xl:max-h-[600px] object-cover"
+                className="lg:max-h-[530px] xl:max-h-[630px] object-cover"
                 src={image.src}
                 alt=""
               />

@@ -2,32 +2,27 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import school1 from "../../../assets/banner/school-9.jpg";
-import school2 from "../../../assets/banner/school-2.jpg";
-import school3 from "../../../assets/banner/school-5.jpg";
-import school4 from "../../../assets/banner/school-3.jpg";
-import school5 from "../../../assets/banner/school-1.jpg";
 
 const Banner = () => {
   const images = [
     {
-      src: school1,
+      src: "https://i.ibb.co/8MZXH8B/school-9.jpg",
       no: 2,
     },
     {
-      src: school2,
+      src: "https://i.ibb.co/9pJPb7M/school-2.jpg",
       no: 2,
     },
     {
-      src: school3,
+      src: "https://i.ibb.co/KWfcwFP/school-5.jpg",
       no: 3,
     },
     {
-      src: school4,
+      src: "https://i.ibb.co/mGB9j0M/school-3.jpg",
       no: 4,
     },
     {
-      src: school5,
+      src: "https://i.ibb.co/MR6Bkxw/school-1.jpg",
       no: 5,
     },
   ];
@@ -41,7 +36,6 @@ const Banner = () => {
         showIndicators={false}
         showStatus={false}
         showThumbs={false}
-        // axis="vertical"
         emulateTouch={true}
         stopOnHover={true}
         interval={4000}

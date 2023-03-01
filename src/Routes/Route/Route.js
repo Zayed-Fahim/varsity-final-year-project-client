@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Front from "../../Layout/Front/Front";
 import Main from "../../Layout/Main/Main";
@@ -12,6 +12,7 @@ import StudentSignup from "../../Pages/Signup/StudentSignup/StudentSignup";
 import TeacherSignup from "../../Pages/Signup/TeacherSignup/TeacherSignup";
 
 const Route = () => {
+  const [sectionHeight, setSectionHeight] = useState(0);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -19,11 +20,12 @@ const Route = () => {
     },
     {
       path: "/",
-      element: <Main />,
+      element: <Main sectionHeight={sectionHeight} />,
+
       children: [
         {
           path: "/home",
-          element: <Home />,
+          element: <Home setSectionHeight={setSectionHeight} />,
         },
       ],
     },

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./navbar.css";
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -14,7 +15,6 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   console.log(scrollPosition);
 
   return (
@@ -22,8 +22,9 @@ const Navbar = () => {
       <div className="navbar container mx-auto p-0 m-0">
         <div className="navbar-start">
           {/* mobile menu start */}
+
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn btn-link text-black lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2280/svg"
                 className="h-5 w-5"
@@ -41,38 +42,109 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-128 max-h-max"
+              className="menu menu-compact dropdown-content mt-2 p-2 shadow bg-white z-[20] max-h-max min-w-max"
             >
-              <li>
-                <NavLink>About Us</NavLink>
+              <li className="border-2">
+                <Link
+                  to="/home"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className={`${
+                    scrollPosition >= 0 && scrollPosition <= 210
+                      ? "text-[#FFBE15]"
+                      : "text-black"
+                  }`}
+                >
+                  Home
+                </Link>
               </li>
-              <div className="dropdown-bottom">
-                <li tabIndex={0}>
-                  <NavLink className="justify-between">
-                    Parent
-                    <svg
-                      className="fill-current rotate-90"
-                      xmlns="http://www.w3.org/2280/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8.59,16.58L13.17,12L8.59,7.41L28,6L16,12L28,18L8.59,16.58Z" />
-                    </svg>
-                  </NavLink>
-                  <ul className="p-2">
-                    <li>
-                      <NavLink>Submenu 1</NavLink>
-                    </li>
-                    <li>
-                      <NavLink>Submenu 2</NavLink>
-                    </li>
-                  </ul>
-                </li>
-              </div>
-              <li>
-                <NavLink>Our Services</NavLink>
+              <li className="border-2">
+                <Link
+                  to="/home/#about"
+                  onClick={() => {
+                    window.scrollTo({ top: 211, behavior: "smooth" });
+                  }}
+                  className={`${
+                    scrollPosition >= 211 && scrollPosition <= 909
+                      ? "text-[#FFBE15]"
+                      : "text-black"
+                  }`}
+                >
+                  About Us
+                </Link>
               </li>
+              <li className="border-2">
+                <Link
+                  to="/home/#our-services"
+                  onClick={() => {
+                    window.scrollTo({ top: 910, behavior: "smooth" });
+                  }}
+                  className={`${
+                    scrollPosition >= 910 && scrollPosition <= 1609
+                      ? "text-[#FFBE15]"
+                      : "text-black"
+                  }`}
+                  title="Know what we provide"
+                >
+                  Our Services
+                </Link>
+              </li>
+              <li className="border-2">
+                <Link
+                  to="/home/#school-list"
+                  onClick={() => {
+                    window.scrollTo({ top: 1610, behavior: "smooth" });
+                  }}
+                  className={`${
+                    scrollPosition >= 1610 && scrollPosition <= 2309
+                      ? "text-[#FFBE15]"
+                      : "text-black"
+                  }`}
+                  title="Who use our services"
+                >
+                  School List
+                </Link>
+              </li>
+              <li className="border-2">
+                <Link
+                  to="/home/#contact-us"
+                  onClick={() => {
+                    window.scrollTo({ top: 2310, behavior: "smooth" });
+                  }}
+                  className={`${
+                    scrollPosition >= 2310 && scrollPosition <= 2510
+                      ? "text-[#FFBE15]"
+                      : "text-black"
+                  }`}
+                  title="Contact us for any kind of information"
+                >
+                  Contact Us
+                </Link>
+              </li>
+
+              {/* <li tabIndex={0}>
+                <Link className="justify-between">
+                  Parent
+                  <svg
+                    className="fill-current rotate-90"
+                    xmlns="http://www.w3.org/2280/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8.59,16.58L13.17,12L8.59,7.41L28,6L16,12L28,18L8.59,16.58Z" />
+                  </svg>
+                </Link>
+                <ul className="p-2 dropdown-bottom">
+                  <li className="border-2 w-full">
+                    <Link>Submenu 1</Link>
+                  </li>
+                  <li className="border-2 w-full">
+                    <Link>Submenu 2</Link>
+                  </li>
+                </ul>
+              </li> */}
             </ul>
           </div>
           {/* mobile menu end */}
@@ -92,8 +164,9 @@ const Navbar = () => {
         {/* pc menu start */}
         <div className="navbar-end hidden lg:flex nav-menu">
           <ul className="flex gap-8">
-            <li className="">
+            <li>
               <Link
+                to="/home"
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
@@ -110,6 +183,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                to="/home/#about"
                 onClick={() => {
                   window.scrollTo({ top: 628, behavior: "smooth" });
                 }}
@@ -126,6 +200,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                to="/home/#our-services"
                 onClick={() => {
                   window.scrollTo({ top: 1328, behavior: "smooth" });
                 }}
@@ -141,6 +216,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                to="/home/#school-list"
                 onClick={() => {
                   window.scrollTo({ top: 2028, behavior: "smooth" });
                 }}
@@ -156,6 +232,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                to="/home/#contact-us"
                 onClick={() => {
                   window.scrollTo({ top: 2728, behavior: "smooth" });
                 }}

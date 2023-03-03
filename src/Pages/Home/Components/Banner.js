@@ -22,7 +22,7 @@ const Banner = () => {
       no: 4,
     },
     {
-      src: "https://i.ibb.co/MR6Bkxw/school-1.jpg",
+      src: "https://i.ibb.co/f8MVXgx/school-1.jpg",
       no: 5,
     },
   ];
@@ -30,7 +30,7 @@ const Banner = () => {
     <div className="flex justify-center mt-16 z-0">
       <Carousel
         autoPlay={true}
-        width="90%"
+        width="100%"
         infiniteLoop={true}
         showArrows={true}
         showIndicators={false}
@@ -69,7 +69,7 @@ const Banner = () => {
           return (
             <div key={image.no}>
               <img
-                className="lg:max-h-[530px] xl:max-h-[630px] object-cover"
+                className="lg:max-h-[530px] xl:max-h-[800px] object-cover"
                 src={image.src}
                 alt=""
               />

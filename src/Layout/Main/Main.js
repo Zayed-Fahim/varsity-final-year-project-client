@@ -6,7 +6,7 @@ import Navbar from "../../Pages/Navbar/Navbar/Navbar";
 const Main = ({ sectionHeight }) => {
   return (
     <div>
-      <Navbar sectionHeight={sectionHeight} />
+      <Navbar  />
       <Outlet />
       <Footer />
     </div>

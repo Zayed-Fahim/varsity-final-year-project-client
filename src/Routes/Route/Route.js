@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Front from "../../Layout/Front/Front";
 import Main from "../../Layout/Main/Main";
+import Error404 from "../../Pages/Error404/Error404";
 import Home from "../../Pages/Home/GuestHome/Home";
 import StudentHome from "../../Pages/Home/StudentHome/StudentHome";
 import TeacherHome from "../../Pages/Home/TeacherHome/TeacherHome";
@@ -12,7 +13,6 @@ import StudentSignup from "../../Pages/Signup/StudentSignup/StudentSignup";
 import TeacherSignup from "../../Pages/Signup/TeacherSignup/TeacherSignup";
 
 const Route = () => {
-  const [sectionHeight, setSectionHeight] = useState(0);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -20,12 +20,12 @@ const Route = () => {
     },
     {
       path: "/",
-      element: <Main sectionHeight={sectionHeight} />,
+      element: <Main />,
 
       children: [
         {
           path: "/home",
-          element: <Home setSectionHeight={setSectionHeight} />,
+          element: <Home />,
         },
       ],
     },
@@ -56,6 +56,10 @@ const Route = () => {
     {
       path: "/authorized-login",
       element: <AuthorizedLogin />,
+    },
+    {
+      path: "*",
+      element: <Error404></Error404>,
     },
   ]);
   return <RouterProvider router={router}></RouterProvider>;

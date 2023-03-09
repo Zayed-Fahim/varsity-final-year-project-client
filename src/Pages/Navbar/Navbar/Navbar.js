@@ -76,7 +76,7 @@ const Navbar = () => {
               </li>
               <li className="border-2">
                 <Link
-                  to="/home/#our-services"
+                  to="/home/#features"
                   onClick={() => {
                     window.scrollTo({ top: 910, behavior: "smooth" });
                   }}
@@ -87,7 +87,7 @@ const Navbar = () => {
                   }`}
                   title="Know what we provide"
                 >
-                  Our Services
+                  Features
                 </Link>
               </li>
               <li className="border-2">
@@ -104,6 +104,34 @@ const Navbar = () => {
                   title="Who use our services"
                 >
                   School List
+                </Link>
+              </li>
+              <li className="border-2">
+                <Link
+                  to="/home/#pricing"
+                  onClick={() => {
+                    window.scrollTo({ top: 2310, behavior: "smooth" });
+                  }}
+                  className={`${
+                    scrollPosition >= 2310 && scrollPosition <= 2510
+                      ? "text-[#FFBE15]"
+                      : "text-black"
+                  }`}
+                  title="Contact us for any kind of information"
+                >
+                  Pricing
+                </Link>
+              </li>
+              <li className="border-2">
+                <Link
+                  to="/home/blog"
+                  // onClick={() => {
+                  //   window.scrollTo({ top: 2310, behavior: "smooth" });
+                  // }}
+                  className="focus:text-[#FFBE15]"
+                  title="Contact us for any kind of information"
+                >
+                  Blog
                 </Link>
               </li>
               <li className="border-2">
@@ -163,16 +191,16 @@ const Navbar = () => {
         </div>
         {/* pc menu start */}
         <div className="navbar-end hidden lg:flex nav-menu">
-          <ul className="flex gap-8">
+          <ul className="flex md:gap-3 lg:gap-5 xl:gap-8">
             <li>
               <Link
                 to="/home"
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
                 }}
-                className={`md:text-[.85rem] lg:text-[1rem] xl:text-[18px] font-bold
+                className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold
                  ${
-                   scrollPosition >= 0 && scrollPosition <= 627
+                   scrollPosition >= 20 && scrollPosition <= 627
                      ? "text-[#FFBE15]"
                      : "text-black"
                  }`}
@@ -187,7 +215,7 @@ const Navbar = () => {
                 onClick={() => {
                   window.scrollTo({ top: 628, behavior: "smooth" });
                 }}
-                className={`md:text-[.85rem] lg:text-[1rem] xl:text-[18px] font-bold
+                className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold
                  ${
                    scrollPosition >= 628 && scrollPosition <= 1320
                      ? "text-[#FFBE15]"
@@ -200,18 +228,18 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/home/#our-services"
+                to="/home/#features"
                 onClick={() => {
                   window.scrollTo({ top: 1328, behavior: "smooth" });
                 }}
-                className={`md:text-[.85rem] lg:text-[1rem] xl:text-[18px] font-bold ${
+                className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
                   scrollPosition >= 1328 && scrollPosition <= 2020
                     ? "text-[#FFBE15]"
                     : "text-black"
                 }`}
                 title="Know what we provide"
               >
-                Our Services
+                Features
               </Link>
             </li>
             <li>
@@ -220,7 +248,7 @@ const Navbar = () => {
                 onClick={() => {
                   window.scrollTo({ top: 2028, behavior: "smooth" });
                 }}
-                className={`md:text-[.85rem] lg:text-[1rem] xl:text-[18px] font-bold ${
+                className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
                   scrollPosition >= 2028 && scrollPosition <= 2518
                     ? "text-[#FFBE15]"
                     : "text-black"
@@ -232,11 +260,36 @@ const Navbar = () => {
             </li>
             <li>
               <Link
+                to="/home/#pricing"
+                onClick={() => {
+                  window.scrollTo({ top: 2728, behavior: "smooth" });
+                }}
+                className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
+                  scrollPosition >= 2519 && scrollPosition <= 3420
+                    ? "text-[#FFBE15]"
+                    : "text-black"
+                }`}
+                title="Contact us for any kind of information"
+              >
+                Pricing
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/home/blog"
+                className="md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold focus:text-[#FFBE15]"
+                title="Contact us for any kind of information"
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/home/#contact-us"
                 onClick={() => {
                   window.scrollTo({ top: 2728, behavior: "smooth" });
                 }}
-                className={`lg:text-[1rem] xl:text-[18px] font-bold ${
+                className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
                   scrollPosition >= 2519 && scrollPosition <= 3420
                     ? "text-[#FFBE15]"
                     : "text-black"

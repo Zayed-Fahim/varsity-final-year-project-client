@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Front from "../../Layout/Front/Front";
 import Main from "../../Layout/Main/Main";
 import Error404 from "../../Pages/Error404/Error404";
+import Blog from "../../Pages/Home/Components/Blog";
 import Home from "../../Pages/Home/GuestHome/Home";
 import StudentHome from "../../Pages/Home/StudentHome/StudentHome";
 import TeacherHome from "../../Pages/Home/TeacherHome/TeacherHome";
@@ -26,6 +27,10 @@ const Route = () => {
         {
           path: "/home",
           element: <Home />,
+        },
+        {
+          path: "/home/blog",
+          element: <Blog />,
         },
       ],
     },

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="bg-base-200">
-      <footer className="footer p-10 bg-base-200 text-base-content container mx-auto">
+      <footer className="footer p-5 md:p-8 lg:p-9 xl:p-10 bg-base-200 text-base-content container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
         <div>
           <svg
             width="50"
@@ -44,7 +44,7 @@ const Footer = () => {
           <Link className="link link-hover">Cookie policy</Link>
         </div>
       </footer>
-      <footer className="footer footer-center border-t border-base-300 container mx-auto">
+      <footer className="footer footer-center md:border-t lg:border-t xl:border-t border-base-300 container mx-auto">
         <div className="xl:py-10">
           <div className="flex gap-4">
             <Link>
@@ -83,7 +83,7 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <div className="xl:pb-10">
+      <div className="pt-5 lg:pt-0 md:pt-0 xl:pb-10">
         <p className="text-center">
           Copyright © 2023 - All right reserved by{" "}
           <span className="hover:underline hover:text-[#FFBE15]">

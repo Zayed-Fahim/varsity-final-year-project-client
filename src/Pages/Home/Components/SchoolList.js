@@ -147,23 +147,23 @@ const SchoolList = () => {
               <Slider>
                 <div
                   id="slider"
-                  className="h-[500px] flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
+                  className="lg:h-[350px] xl:h-[500px] flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700"
                 >
                   {lists.map((list) => {
                     return (
                       <Slide index={list.index}>
-                        <div className="flex flex-shrink-0 relative lg:h-[220px] lg:w-[220px] xl:h-[350px] xl:w-[345px] sm:w-auto bg-white rounded-xl drop-shadow-xl">
+                        <div className="flex flex-shrink-0 relative lg:h-[218px] lg:w-[218px] xl:h-[350px] xl:w-[345px] sm:w-auto bg-white rounded-xl drop-shadow-xl">
                           <img
                             src={list.src}
                             alt={list.alt}
                             className="w-full p-12"
                           />
                         </div>
-                        <div className="absolute top-0 bottom-64 hover:bg-black hover:bg-opacity-20 cursor-pointer rounded-lg lg:h-[230px] lg:w-[220px] xl:w-[345px] xl:h-[350px]">
+                        <div className="absolute top-0 bottom-64 hover:bg-black hover:bg-opacity-20 cursor-pointer rounded-lg lg:h-[218px] lg:w-[218px] xl:w-[345px] xl:h-[350px]">
                           <Link
                             to={list.button.link}
                             target="_blank"
-                            className="relative left-[116px] top-[160px] font-bold text-white px-2 py-3 bg-black hover:bg-opacity-70 rounded-lg opacity-0 hover:opacity-100"
+                            className="relative lg:left-[46px] lg:top-[100px] xl:left-[116px] xl:top-[160px] font-bold text-white px-2 py-3 bg-black hover:bg-opacity-70 rounded-lg opacity-0 hover:opacity-100"
                           >
                             {list.button.text}
                           </Link>

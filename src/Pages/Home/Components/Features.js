@@ -60,19 +60,19 @@ const Features = () => {
     },
   ];
   return (
-    <section className="py-10 md:py-14 lg:py-16 xl:py-20" id="our-services">
-      <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center font-bold mb-10 md:mb-14 lg:mb-16 xl:mb-20">
-        <h1>Features of Amader School management system</h1>
+    <section className="py-10 md:py-14 lg:pb-16 xl:pb-20" id="our-services">
+      <div className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-center font-bold mb-10 md:mb-14 lg:mb-24 xl:mb-24">
+        <h1>Features of Amader School management system_</h1>
       </div>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 lg:gap-16 xl:gap-0 place-items-center">
         {services.map((service) => {
           return (
-            <div className="w-full h-[320px] md:h-[470px] md:w-[420] lg:h-[470px] lg:w-[400px] xl:h-[460px] xl:w-[380px] flex flex-col items-center gap-3 md:gap-5 lg:gap-5 xl:gap-5 xl:pt-10 px-5 md:px-4 lg:px-3 xl:px-2 xl:border-r xl:border-l border-b border-black">
+            <div className="w-full h-[320px] md:h-[400px] md:w-[400] lg:h-[390px] lg:w-[380px] xl:h-[460px] xl:w-[380px] flex flex-col items-center gap-3 md:gap-5 lg:gap-5 xl:gap-5 xl:pt-10 px-5 md:px-4 lg:px-6 xl:px-2 md:border-r md:border-l lg:border-r lg:border-l xl:border-r xl:border-l border-b border-black">
               <div className="h-24 w-24 grid place-items-center rounded-[50%] bg-[#FFBE15] bg-opacity-50 hover:bg-[none]">
                 {service.icon}
               </div>
               <div>
-                <h1 className="text-center text-xl md:text-2xl lg:text-3xl xl:text-3xl font-bold">
+                <h1 className="text-center text-xl md:text-2xl lg:text-2xl xl:text-3xl font-bold">
                   {service.heading}
                 </h1>
               </div>

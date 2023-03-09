@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./navbar.css";
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -200,11 +199,11 @@ const Navbar = () => {
                 }}
                 className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold
                  ${
-                   scrollPosition >= 20 && scrollPosition <= 627
+                   scrollPosition >= 20 && scrollPosition <= 512
                      ? "text-[#FFBE15]"
                      : "text-black"
                  }`}
-                title="This is Home page"
+                title="This is Home page."
               >
                 Home
               </Link>
@@ -213,15 +212,15 @@ const Navbar = () => {
               <Link
                 to="/home/#about"
                 onClick={() => {
-                  window.scrollTo({ top: 628, behavior: "smooth" });
+                  window.scrollTo({ top: 513, behavior: "smooth" });
                 }}
                 className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold
                  ${
-                   scrollPosition >= 628 && scrollPosition <= 1320
+                   scrollPosition >= 513 && scrollPosition <= 1060
                      ? "text-[#FFBE15]"
                      : "text-black"
                  }`}
-                title="Know About Us"
+                title="Know About Us."
               >
                 About Us
               </Link>
@@ -230,14 +229,14 @@ const Navbar = () => {
               <Link
                 to="/home/#features"
                 onClick={() => {
-                  window.scrollTo({ top: 1328, behavior: "smooth" });
+                  window.scrollTo({ top: 1061, behavior: "smooth" });
                 }}
                 className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
-                  scrollPosition >= 1328 && scrollPosition <= 2020
+                  scrollPosition >= 1061 && scrollPosition <= 2207
                     ? "text-[#FFBE15]"
                     : "text-black"
                 }`}
-                title="Know what we provide"
+                title="Know what we provide."
               >
                 Features
               </Link>
@@ -246,14 +245,14 @@ const Navbar = () => {
               <Link
                 to="/home/#school-list"
                 onClick={() => {
-                  window.scrollTo({ top: 2028, behavior: "smooth" });
+                  window.scrollTo({ top: 2208, behavior: "smooth" });
                 }}
                 className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
-                  scrollPosition >= 2028 && scrollPosition <= 2518
+                  scrollPosition >= 2208 && scrollPosition <= 3024
                     ? "text-[#FFBE15]"
                     : "text-black"
                 }`}
-                title="Who use our services"
+                title="Who uses our services?"
               >
                 School List
               </Link>
@@ -262,14 +261,14 @@ const Navbar = () => {
               <Link
                 to="/home/#pricing"
                 onClick={() => {
-                  window.scrollTo({ top: 2728, behavior: "smooth" });
+                  window.scrollTo({ top: 3025, behavior: "smooth" });
                 }}
                 className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
-                  scrollPosition >= 2519 && scrollPosition <= 3420
+                  scrollPosition >= 3025 && scrollPosition <= 3731
                     ? "text-[#FFBE15]"
                     : "text-black"
                 }`}
-                title="Contact us for any kind of information"
+                title="Deal with our best price."
               >
                 Pricing
               </Link>
@@ -278,7 +277,7 @@ const Navbar = () => {
               <Link
                 to="/home/blog"
                 className="md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold focus:text-[#FFBE15]"
-                title="Contact us for any kind of information"
+                title="See our blogs."
               >
                 Blog
               </Link>
@@ -287,14 +286,14 @@ const Navbar = () => {
               <Link
                 to="/home/#contact-us"
                 onClick={() => {
-                  window.scrollTo({ top: 2728, behavior: "smooth" });
+                  window.scrollTo({ top: 4275, behavior: "smooth" });
                 }}
                 className={`md:text-[1rem] lg:text-[.85rem] xl:text-[18px] font-bold ${
-                  scrollPosition >= 2519 && scrollPosition <= 3420
+                  scrollPosition >= 4236 && scrollPosition <= 5035
                     ? "text-[#FFBE15]"
                     : "text-black"
                 }`}
-                title="Contact us for any kind of information"
+                title="Contact us for any kind of information."
               >
                 Contact Us
               </Link>

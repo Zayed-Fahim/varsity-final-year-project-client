@@ -6,9 +6,9 @@ import { Icon } from "leaflet";
 
 const GoogleMap = () => {
   return (
-    <div className="container mx-auto my-5 lg:my-16 md:my-14 xl:mb-20">
+    <div className="container mx-auto my-5 lg:mb-16 md:mb-14 xl:mb-20 z-[1]">
       <MapContainer
-        className="xl:h-[50vh] h-[25vh] md:h-[35vh] lg:h-[45vh] w-full"
+        className="xl:h-[50vh] h-[25vh] md:h-[35vh] lg:h-[40vh] w-full z-0"
         // style={{ height: "40vh" }}
         center={[23.7271409, 90.3654296]}
         zoom={13}

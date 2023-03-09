@@ -78,13 +78,13 @@ const ContactUs = () => {
       className="xl:max-h-max container mx-auto py-10 lg:py-16 md:py-14 xl:py-0 xl:pb-12"
       id="contact-us"
     >
-      <div className="xl:my-20">
+      <div className="md:mb-14 lg:mb-16 xl:my-20">
         <h1 className="text-center font-bold text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
           Contact Info_
         </h1>
       </div>
-      <div className="flex flex-col gap-5 lg:gap-0 md:gap-0 xl:gap-0 xl:flex-row md:justify-between lg:justify-between xl:justify-between">
-        <div className="bg-white shadow-lg p-2 lg:p-0 md:p-0 xl:px-20 xl:max-h-[420px] mx-5 lg:mx-0 md:mx-0 xl:mx-0 xl:pb-10">
+      <div className="flex flex-col lg:flex-row md:flex-row gap-5 lg:gap-0 md:gap-0 xl:gap-0 xl:flex-row md:justify-between lg:justify-between xl:justify-between">
+        <div className="bg-white shadow-lg p-2 lg:p-5 md:p-5 xl:px-20 md:max-h-[420px] md:max-w-[370px] lg:max-w-[450px] xl:min-h-[480px] xl:max-w-max mx-5 lg:mx-0 md:mx-0 xl:mx-0 xl:pb-10">
           <div className="grid place-items-center xl:mb-8 py-8">
             <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl font-bold">
               Contact Info
@@ -138,7 +138,7 @@ const ContactUs = () => {
           </div>
         </div>
         <form
-          className="flex flex-col gap-4 lg:gap-0 md:gap-0 xl:gap-0 min-w-full  xl:min-w-[600px] xl:max-w-max"
+          className="flex flex-col gap-4 lg:gap-0 md:gap-0 xl:gap-0 min-w-full md:min-w-[360px] md:max-w-full lg:min-w-[500px] lg:max-w-full  xl:min-w-[600px] xl:max-w-max"
           onSubmit={handleSubmit(sendMail)}
         >
           <div className="max-w-full mx-5 lg:mx-0 md:mx-0 xl:mx-0">
@@ -147,7 +147,7 @@ const ContactUs = () => {
             </label>
             <input
               {...register("name")}
-              className="border min-w-full h-9 xl:h-10 px-4 outline-[#FFBE15]"
+              className="border min-w-full lg:max-w-full h-9 xl:h-10 px-4 outline-[#FFBE15]"
             />
             <p className="text-red-500">{errors.name?.message}</p>
           </div>
@@ -193,7 +193,7 @@ const ContactUs = () => {
             <p className="text-red-500">{errors.message?.message}</p>
           </div>
 
-          <div className="bg-[#FFBE15] mx-5 lg:mx-0 md:mx-0 xl:mx-0 mt-5 md:mt-16 lg:mt-20 xl:mt-24 xl:w-28 grid place-items-center border border-[#FFBE15] hover:bg-white hover:border hover:border-[#FFBE15] hover:text-[#FFBE15] ">
+          <div className="bg-[#FFBE15] mx-5 lg:mx-0 md:mx-0 xl:mx-0 mt-5 md:mt-10 lg:mt-10 xl:mt-24 xl:w-28 grid place-items-center border border-[#FFBE15] hover:bg-white hover:border hover:border-[#FFBE15] hover:text-[#FFBE15] ">
             <input
               type="submit"
               value="SEND"

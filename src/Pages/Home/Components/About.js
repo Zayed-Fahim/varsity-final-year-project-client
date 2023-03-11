@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const About = () => {
+  const [scroll, setScroll] = useState(0);
+  useEffect(() => {
+    let progressBarHandler = () => {
+      const totalScroll = document.documentElement.scrollTop;
+      console.log(totalScroll);
+      const windowHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      console.log(windowHeight);
+      const scroll = `${(totalScroll / windowHeight) * 100}`;
+
+      setScroll(scroll);
+    };
+
+    window.addEventListener("scroll", progressBarHandler);
+
+    return () => window.removeEventListener("scroll", progressBarHandler);
+  });
+  console.log(scroll);
   return (
     <section className="py-10 md:py-14 lg:py-16 xl:pb-20" id="about">
       <div className="container mx-auto grid place-items-center gap-10">

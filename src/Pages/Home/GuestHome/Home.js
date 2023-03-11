@@ -5,7 +5,6 @@ import Features from "../Components/Features";
 import GoogleMap from "../Components/GoogleMap";
 import HomeCarousel from "../Components/HomeCarousel";
 import Pricing from "../Components/Pricing";
-
 import SchoolList from "../Components/SchoolList";
 import UserCounter from "../Components/UserCounter";
 

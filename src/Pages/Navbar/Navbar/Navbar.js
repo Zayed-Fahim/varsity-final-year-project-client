@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [scroll, setScroll] = useState(0);
   const handleScroll = () => {
     const position = window.scrollY;
     setScrollPosition(position);
@@ -14,10 +15,34 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  console.log(scrollPosition);
+  // console.log(scrollPosition);
+  // progressBar code
+  useEffect(() => {
+    let progressBarHandler = () => {
+      const totalScroll = document.documentElement.scrollTop;
+      // console.log(totalScroll);
+      const windowHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      // console.log(windowHeight);
+      const scroll = `${(totalScroll / windowHeight) * 100}`;
+
+      setScroll(scroll);
+    };
+
+    window.addEventListener("scroll", progressBarHandler);
+
+    return () => window.removeEventListener("scroll", progressBarHandler);
+  });
+  // console.log(scroll);
 
   return (
-    <div className="fixed top-0 min-w-full border border-b-black border-opacity-28 bg-white z-[128]">
+    <div className="fixed top-0 min-w-full drop-shadow-lg bg-white z-[128]">
+      <progress
+        className="progress progress-warning w-full"
+        value={scroll}
+        max="100"
+      ></progress>
       <div className="navbar container mx-auto p-0 m-0">
         <div className="navbar-start">
           {/* mobile menu start */}
@@ -124,9 +149,6 @@ const Navbar = () => {
               <li className="border-2">
                 <Link
                   to="/home/blog"
-                  // onClick={() => {
-                  //   window.scrollTo({ top: 2310, behavior: "smooth" });
-                  // }}
                   className="focus:text-[#FFBE15]"
                   title="Contact us for any kind of information"
                 >
@@ -149,29 +171,6 @@ const Navbar = () => {
                   Contact Us
                 </Link>
               </li>
-
-              {/* <li tabIndex={0}>
-                <Link className="justify-between">
-                  Parent
-                  <svg
-                    className="fill-current rotate-90"
-                    xmlns="http://www.w3.org/2280/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8.59,16.58L13.17,12L8.59,7.41L28,6L16,12L28,18L8.59,16.58Z" />
-                  </svg>
-                </Link>
-                <ul className="p-2 dropdown-bottom">
-                  <li className="border-2 w-full">
-                    <Link>Submenu 1</Link>
-                  </li>
-                  <li className="border-2 w-full">
-                    <Link>Submenu 2</Link>
-                  </li>
-                </ul>
-              </li> */}
             </ul>
           </div>
           {/* mobile menu end */}
@@ -189,7 +188,7 @@ const Navbar = () => {
           </Link>
         </div>
         {/* pc menu start */}
-        <div className="navbar-end hidden lg:flex nav-menu">
+        <div className="navbar-end hidden lg:flex">
           <ul className="flex md:gap-3 lg:gap-5 xl:gap-8">
             <li>
               <Link

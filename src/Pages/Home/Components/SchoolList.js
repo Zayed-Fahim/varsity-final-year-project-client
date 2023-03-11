@@ -112,7 +112,7 @@ const SchoolList = () => {
       <div className="flex items-center justify-center w-full h-full py-10 md:py-16 lg:py-20 xl:py-24 sm:py-8 px-5">
         {/* Carousel for desktop and large size devices */}
         <CarouselProvider
-          className="lg:block hidden"
+          className="lg:block hidden overflow-x-hidden"
           isIntrinsicHeight={true}
           totalSlides={10}
           visibleSlides={5}
@@ -201,7 +201,7 @@ const SchoolList = () => {
 
         {/* Carousel for tablet and medium size devices */}
         <CarouselProvider
-          className="lg:hidden md:block hidden"
+          className="lg:hidden md:block hidden overflow-x-hidden"
           isIntrinsicHeight={true}
           totalSlides={10}
           visibleSlides={4}
@@ -279,7 +279,7 @@ const SchoolList = () => {
 
         {/* Carousel for mobile and Small size Devices */}
         <CarouselProvider
-          className="block md:hidden "
+          className="block md:hidden overflow-x-hidden"
           isIntrinsicHeight={true}
           totalSlides={12}
           visibleSlides={1}
@@ -319,7 +319,7 @@ const SchoolList = () => {
                     return (
                       <Slide index={list.index}>
                         <Link to={list.button.link} target="_blank">
-                          <div className="flex flex-shrink-0 relative sm:w-auto w-[350px] h-[350px] p-10 bg-black bg-opacity-10">
+                          <div className="flex flex-shrink-0 relative sm:w-auto max-w-[350px] h-[350px] p-10 bg-black bg-opacity-10">
                             <img
                               src={list.src}
                               alt={list.alt}

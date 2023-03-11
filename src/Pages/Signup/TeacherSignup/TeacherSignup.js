@@ -157,7 +157,6 @@ const TeacherSignup = () => {
               className="border-2 outline-[#FFBE15] h-12 w-full md:w-[230px] lg:w-[235px] xl:w-72 px-2"
               placeholder="User Name"
               {...register("userName")}
-              
             />
             <p className="text-red-500">{errors.userName?.message}</p>
           </div>
